@@ -12,7 +12,8 @@ const getGoals = asyncHandler(async (req, res) => {
 //@access Public
 const addGoal = asyncHandler(async (req, res) => {
     if(!req.body.text){
-        res.status(400).json({ message: "Please add a goal" });
+        res.status(400);
+        throw new Error('Please enter text');
     }
     res.status(200).json({ message: "add goals" });
 })
