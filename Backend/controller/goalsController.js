@@ -3,7 +3,7 @@ const Goal = require('../model/goalModel');
 
 //@desc get goal
 //@route GET /api/goals
-//@access Public
+//@access Private
 const getGoals = asyncHandler(async (req, res) => {
     const goals = await Goal.find()
 
@@ -12,7 +12,7 @@ const getGoals = asyncHandler(async (req, res) => {
 
 //@desc add goal
 //@route POST /api/goals
-//@access Public
+//@access Private
 const addGoal = asyncHandler(async (req, res) => {
     if(!req.body.text){
         res.status(400);
@@ -25,7 +25,7 @@ const addGoal = asyncHandler(async (req, res) => {
 
 //@desc update goal
 //@route PUT /api/goals/:id
-//@access Public
+//@access Private
 const updateGoal = asyncHandler(async (req, res) => {
     const goal = await Goal.findById(req.params.id);
     if(!goal){
@@ -40,7 +40,7 @@ const updateGoal = asyncHandler(async (req, res) => {
 
 //@desc delete goal
 //@route DELETE /api/goals/:id
-//@access Public
+//@access Private
 const deleteGoal = asyncHandler(async (req, res) => {
     const goal = await Goal.findById(req.params.id);
     if(!goal){
