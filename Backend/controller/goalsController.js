@@ -1,11 +1,15 @@
 const asyncHandler = require('express-async-handler');
 const Goal = require('../model/goalModel');
+const User = require('../model/userModel');
+// WE CAN USER req.user.id BECAUSE OF MIDDLEWARE authMiddleware
 
 //@desc get goal
 //@route GET /api/goals
 //@access Private
 const getGoals = asyncHandler(async (req, res) => {
-    const goals = await Goal.find()
+    
+// WE CAN USER req.user.id BECAUSE OF MIDDLEWARE authMiddleware
+    const goals = await Goal.find({user :req.user.id})
 
     res.status(200).json({goals});
 })
@@ -18,7 +22,10 @@ const addGoal = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error('Please enter text');
     }
-    const goal = await Goal.create({text:req.body.text});
+    const goal = await Goal.create({
+        text:req.body.text,
+        user:req.user.id     
+    });
 
     res.status(200).json({goal});
 })
@@ -31,6 +38,19 @@ const updateGoal = asyncHandler(async (req, res) => {
     if(!goal){
         res.status(400)
         throw new Error('Goal not found');
+    }
+
+    const user = await User.findById(req.user.id)
+
+    //check for user
+    if(!user){
+        res.status(401)
+        throw new Error('user not found');
+    }
+
+    if(goal.user.toString() !== req.user.id ){
+        res.status(401)
+        throw new Error('Not authorized');
     }
 
     const upadtedGoal = await Goal.findByIdAndUpdate(req.params.id,req.body,{ new:true,})
@@ -48,6 +68,18 @@ const deleteGoal = asyncHandler(async (req, res) => {
         throw new Error('Goal not found');
     }
     
+    const user = await User.findById(req.user.id)
+
+    //check for user
+    if(!user){
+        res.status(401)
+        throw new Error('user not found');
+    }
+
+    if(goal.user.toString() !== req.user.id ){
+        res.status(401)
+        throw new Error('Not authorized');
+    }
     await goal.deleteOne();
     res.status(200).json({id:req.params.id});
 })
