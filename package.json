@@ -1,11 +1,12 @@
 {
   "name": "goal-setter",
   "version": "1.0.0",
-  "description": "Add/ update your goals with goalSetter",
+  "description": "Add/update your goals with goalSetter",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client":"npm start --prefix frontend"
   },
   "author": "Arpan Vala",
   "license": "ISC",
