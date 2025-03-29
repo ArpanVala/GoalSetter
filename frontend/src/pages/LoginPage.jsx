@@ -64,12 +64,12 @@ const LoginPage = () => {
         <form onSubmit={onSubmit}>
     
             <div className="form-group">
-            <input type='text' className='form-control' id='email' name='email' value={email} placeholder='Enter email' 
+            <input type='text' className='form-control' id='email' name='email' value={email} placeholder='Enter email'  required
             onChange={onChange}/>
             </div>
 
             <div className="form-group">
-            <input type='password' className='form-control' id='password' name='password' value={password} placeholder='Enter Password' 
+            <input type='password' className='form-control' id='password' name='password' value={password} placeholder='Enter Password'  required
             onChange={onChange}/>
             </div>
 
