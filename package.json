@@ -19,5 +19,8 @@
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.10.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
   }
 }

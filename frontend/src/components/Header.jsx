@@ -1,7 +1,7 @@
 import {FaUser, FaSignInAlt,FaSignOutAlt} from 'react-icons/fa'
 import {Link,useNavigate} from 'react-router-dom'
 import { useDispatch,useSelector } from 'react-redux'
-import { logout, reset } from '../features/Auth/authService'
+import { logout, reset } from '../features/Auth/authSlice'
 
 
 const Header = () => {
@@ -25,9 +25,9 @@ const Header = () => {
 
     <ul>
     {user?( <li>
-        <Button onClick={onLogout}>
+        <button onClick={onLogout} className='btn'>
         <FaSignOutAlt/>Logout
-        </Button>
+        </button>
         </li>)
         :
         (<>
