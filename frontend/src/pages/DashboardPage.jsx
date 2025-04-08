@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom'
 import {toast} from 'react-toastify'
 import Spinner from '../components/Spinner'
 import GoalForm from '../components/GoalForm'
+import GoalItem from '../components/GoalItem'
 import {getGoals, reset} from '../features/goals/goalSlice'
 
 
@@ -50,10 +51,7 @@ const DashboardPage = () => {
       {goals.length > 0 ? (
         <div className="goals">
           {goals.map((goal) => (
-            <div key={goal._id} className="goal">
-              <div>{new Date(goal.createdAt).toLocaleString('en-US')}</div>
-              <h2>{goal.text}</h2>
-            </div>
+             <GoalItem key={goal._id} className='goal' goal={goal}/>
           ))}
         </div>
       ) : (

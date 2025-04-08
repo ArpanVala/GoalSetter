@@ -16,6 +16,7 @@ const GoalForm = () => {
             return
         }
         dispatch(createGoal({text}))
+        toast.success('Goal added successfully')
         setText('')
     }
   return (
