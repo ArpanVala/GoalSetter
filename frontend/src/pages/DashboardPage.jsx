@@ -22,7 +22,7 @@ const DashboardPage = () => {
       console.log(message)
     } 
     if(!user) {
-      toast.error('You are not logged in')
+      toast.error('Please login or signin ')
       navigate('/login')
     }
     dispatch(getGoals())

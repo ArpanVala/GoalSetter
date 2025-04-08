@@ -53,9 +53,9 @@ const updateGoal = asyncHandler(async (req, res) => {
         throw new Error('Not authorized');
     }
 
-    const upadtedGoal = await Goal.findByIdAndUpdate(req.params.id,req.body,{ new:true,})
+    const updatedGoal = await Goal.findByIdAndUpdate(req.params.id,req.body,{ new:true,})
 
-    res.status(200).json({upadtedGoal});
+    res.status(200).json({updatedGoal});
 })
 
 //@desc delete goal

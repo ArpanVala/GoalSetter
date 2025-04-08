@@ -37,12 +37,24 @@ const deleteGoal = async(goalId, token) =>{
     
     return response.data
 }
-
+// Update goal
+const updateGoal = async(goalData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    const response = await axios.put(API_URL + goalData._id, goalData, config)
+    
+    // Return the entire response data so you can access updatedGoal in the reducer
+    return response.data.updatedGoal
+}
 
 const goalService = {
    createGoal,
    getGoals,
    deleteGoal,
+   updateGoal
 }
 
 
