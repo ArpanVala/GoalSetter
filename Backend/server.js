@@ -10,7 +10,20 @@ connectDB();
 const port = process.env.PORT || 5000;
 const app=express(); 
 
-app.use(cors());
+
+//for deployment
+const allowedOrigins = ['https://goalsetter-frontend-geog.onrender.com'];
+app.use(cors({
+    origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+        callback(new Error('Not allowed by CORS'));
+    }
+},
+credentials: true,
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
